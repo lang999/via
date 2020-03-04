@@ -2,11 +2,14 @@ window.hypothesisConfig = function() {
   return {
     showHighlights: true,
     appType: 'via',
-
-    {% if h_request_config %}
-    requestConfigFromFrame: '{{ h_request_config }}',
-    {% endif %}
-
+    requestConfigFromFrame: {
+      {% if h_request_config -%}
+      origin: '{{ h_request_config }}',
+      {% endif %}
+      {%- if h_ancestor_level -%}
+      ancestorLevel: {{ h_ancestor_level }}
+      {% endif %}
+    },
     {% if h_open_sidebar %}
     openSidebar: true,
     {% endif %}

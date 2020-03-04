@@ -101,6 +101,10 @@ class ConfigExtractor(object):
             template_params["h_request_config"] = via_params[
                 "via.request_config_from_frame"
             ]
+        if "via.config_frame_ancestor_level" in via_params:
+            template_params["h_ancestor_level"] = via_params[
+                "via.config_frame_ancestor_level"
+            ]
         if "via.open_sidebar" in via_params:
             template_params["h_open_sidebar"] = True
 

@@ -95,13 +95,15 @@ class TestConfigExtractor(object):
         resp = client_get(
             "/example.com?q=foobar&"
             "via.open_sidebar=1&"
-            "via.request_config_from_frame=https://lms.hypothes.is"
+            "via.request_config_from_frame=https://lms.hypothes.is&"
+            "via.config_frame_ancestor_level=2"
         )
 
         template_params = json.loads(resp.data).get("pywb.template_params")
         assert template_params == {
             "h_open_sidebar": True,
             "h_request_config": "https://lms.hypothes.is",
+            "h_ancestor_level": "2",
         }
 
     def test_it_sets_via_features_template_param(self, client_get):
